@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="lfog tisa3">
+        <img
+            src="{{ url_for('static', filename='image/HOME.png') }}"
+            width="120">
+        <div class="tisa3 lonedialelein">
+            <a href="/">HOME</a>
+            <a href="/add">ADD</a>
+            <a href="/update">UPDP</a>
+            <a href="/delete">DELP</a>
+            <a href="/account">ACCOUNT</a>
+            <a href="/developer">DEVI</a>
+        </div>
+    </div>
+    <div class="add-box">
+        <h2>Create Account</h2>
+        {% if message %}
+        <p class="signup-message">
+            {{ message }}
+        </p>
+        {% endif %}
+        <form method="POST">
+          <label>Username</label>
+          <input
+             type="text"
+             name="username"
+             placeholder="Enter Username"
+             required
+            >
+          <label>Email</label>
+          <input
+             type="email"
+             name="email"
+             placeholder="Enter Email"
+             required
+            >
+          <label>Password</label>
+             <div class="password-wrapper">
+                 <input
+                     type="password"
+                     name="password"
+                     id="signup-password"
+                     placeholder="Enter Password"
+                     required
+                    >
+                 <span
+                     class="password-eye"
+                     onclick="toggleSignupPassword()"
+                     id="signup-password-eye"
+                     >👁️</span>
+             </div>
+          <button type="submit">
+             Create Account
+          </button>
+        </form>
+        <p class="account-link">
+           Already have an account?
+          <a href="/signin">
+             SIGN IN
+           </a>
+       </p>
+   </div>
+   <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

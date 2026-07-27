@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="lfog tisa3">
+        <img
+            src="{{ url_for('static', filename='image/HOME.png') }}"
+            width="120">
+        <div class="tisa3 lonedialelein">
+            <a href="/">HOME</a>
+            <a href="/add">ADD</a>
+            <a href="/update">UPDP</a>
+            <a href="/delete">DELP</a>
+            <a href="/developer">DEVI</a>
+            <a href="/account">ACCOUNT</a>
+            <a href="/logout">LOGOUT</a>
+        </div>
+    </div>
+    <div class="account-box">
+        <h2>My Account</h2>
+        {% if message %}
+        <p class="account-message">
+            {{ message }}
+        </p>
+        {% endif %}
+        <div class="account-info">
+            <p>
+                <strong>Username:</strong>
+                {{ user["username"] }}
+            </p>
+            <p>
+                <strong>Email:</strong>
+                {{ user["email"] }}
+            </p>
+        </div>
+        <div class="account-section">
+            <h3>Edit Account</h3>
+            <form
+                action="/update_account"
+                method="POST">
+                <label>Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    value="{{ user['username'] }}"
+                    required
+                >
+                <label>Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ user['email'] }}"
+                    required
+                >
+                <button type="submit">
+                    Save Changes
+                </button>
+            </form>
+        </div>
+        <div class="account-section">
+           <h3>Change Password</h3>
+           <form action="/change_password" method="POST">
+             <label>Current Password</label>
+             <div class="password-wrapper">
+                 <input
+                     type="password"
+                     name="current_password"
+                     id="current-password"
+                     placeholder="Enter Current Password"
+                     required
+                    >
+                   <span
+                     class="password-eye"
+                     onclick="toggleAccountPassword('current-password', 'current-password-eye')"
+                     id="current-password-eye"
+                   >👁️</span>
+             </div>
+             <label>New Password</label>
+              <div class="password-wrapper">
+                 <input
+                     type="password"
+                     name="new_password"
+                     id="new-password"
+                     placeholder="Enter New Password"
+                     required
+                   >
+                 <span
+                     class="password-eye"
+                     onclick="toggleAccountPassword('new-password', 'new-password-eye')"
+                     id="new-password-eye"
+                   >👁️</span>
+                </div>
+              <label>Confirm New Password</label>
+              <div class="password-wrapper">
+                   <input
+                     type="password"
+                     name="confirm_password"
+                     id="confirm-password"
+                     placeholder="Confirm New Password"
+                     required
+                    >
+                   <span
+                     class="password-eye"
+                     onclick="toggleAccountPassword('confirm-password', 'confirm-password-eye')"
+                     id="confirm-password-eye"
+                   >👁️</span>
+                </div>
+              <button type="submit">
+                 Change Password
+              </button>
+           </form>
+       </div>
+        <div class="account-buttons">
+            <a
+                href="/"
+                class="account-button">
+                HOME
+            </a>
+            <a
+                href="/logout"
+                class="account-button logout-button">
+                LOGOUT
+            </a>
+        </div>
+    </div>
+    <script
+        src="{{ url_for('static', filename='script.js') }}">
+    </script>
+</body>
+</html>

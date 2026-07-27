@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+     <div class="lfog tisa3">
+        <div class="logo-user">
+          <img src="{{ url_for('static', filename='image/HOME.png') }}"
+             width="120"/>
+             {% if session.get("username") %}
+          <span class="welcome-user">
+              Welcome, {{ session["username"] }}
+           </span>
+           {% endif %}
+        </div>
+        <div class="tisa3 lonedialelein lfog">
+           <a href="/">HOME</a>
+           <a href="/add">ADD</a>
+           <a href="/update">UPDP</a>
+           <a href="/delete">DELP</a>
+           <a href="/account">ACCOUNT</a>
+           <a href="/developer">DEVI</a>
+           {% if session.get("username") %}
+            <a href="/logout">
+                LOGOUT
+            </a>
+            {% else %}
+            <a href="/signin" class="sign-in">
+                SIGN IN
+            </a>
+            {% endif %}
+         </div>
+      </div>
+    <div class="lmohtawa">
+        <div class="lhade">
+            <span class="diali">
+                Welcome to Update Contacts
+            </span>
+            <p>
+                This page provides a dedicated update system where all saved contacts are displayed in a clear table, allowing the user to easily search for a specific name to find the exact person they want to modify.
+                 When you search for a name, the table automatically filters to show everyone sharing that same name, and clicking on the desired contact instantly loads their detailed information into an editable form.
+                  Once the user modifies the necessary details, clicking the save update button applies and secures all the changes made, making the process of keeping names and numbers accurate both fast and efficient.
+            </p>
+        </div>
+        <div class="image">
+            <img
+                src="{{ url_for('static', filename='image/UPDP.png') }}"
+                width="250"
+                height="200">
+        </div>
+    </div>
+    <div class="contacts">
+        <h2>All Contacts</h2>
+        <form class="search" method="GET">
+             <input
+               type="text"
+               name="search"
+               placeholder="Search contacts..."
+               value="{{ search }}">
+               <button style="left: 365px;">
+               Search
+              </button>
+        </form>
+        <br><br>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact["name"] }}</td>
+                <td>{{ contact["phone"] }}</td>
+                <td>
+                    <a href="/update/{{ contact['id'] }}">
+                        Update
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% if contact %}
+    <div class="update-box">
+       <h2>Update Contact</h2>
+       <form action="/save_update" method="POST">
+           <input
+             type="hidden"
+             name="id"
+             value="{{ contact['id'] }}"
+            >
+           <label>Name</label>
+           <input
+              type="text"
+              name="name"
+              value="{{ contact['name'] }}"
+              required
+            >
+            <label>Phone</label>
+           <input
+              type="text"
+              name="phone"
+              value="{{ contact['phone'] }}"
+              required
+            >
+            <button type="submit">
+              Save Changes
+            </button>
+        </form>
+    </div>
+    {% endif %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

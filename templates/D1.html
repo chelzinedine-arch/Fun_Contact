@@ -1,0 +1,86 @@
+<! DOCTYPE html>
+<html>
+ <head>
+   <title>Fun_Contact</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" 
+      rel="stylesheet" 
+      />
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+   <body>
+     <div class="lfog tisa3">
+        <div class="logo-user">
+          <img src="{{ url_for('static', filename='image/HOME.png') }}"
+             width="120"/>
+             {% if session.get("username") %}
+          <span class="welcome-user">
+              Welcome, {{ session["username"] }}
+           </span>
+           {% endif %}
+        </div>
+        <div class="tisa3 lonedialelein lfog">
+           <a href="/">HOME</a>
+           <a href="/add">ADD</a>
+           <a href="/update">UPDP</a>
+           <a href="/delete">DELP</a>
+           <a href="/account">ACCOUNT</a>
+           <a href="/developer">DEVI</a>
+           {% if session.get("username") %}
+            <a href="/logout">
+                LOGOUT
+            </a>
+            {% else %}
+            <a href="/signin" class="sign-in">
+                SIGN IN
+            </a>
+            {% endif %}
+         </div>
+      </div>
+      <div class="lmohtawa ">
+         <div class="lhade">
+            <span class="dialin">welcome to fun_contact</span>
+            <p>This site is a simple and practical contact management system that allows the user to save people's names and phone numbers in one place in an organized and easy-to-access manner.
+                The site helps keep data on people you know without having to search different places.
+                The site provides a set of basic functions, such as ADD a new contact, UPDP data for an existing contact, and DELP any contact that no longer needs it.
+                 It also displays all contacts in an organized list for easy access and management.
+                 This site aims to provide a fast and secure way to organize contact data, making the process of saving and managing names and numbers easier and more efficient. It also features a simple user interface that suits all users, helping them complete tasks easily and without complexity.
+            </p>
+           <h3 class="dialin">Find a contact!</h3>  
+            <form class="search" method="GET">
+             <input
+               type="text"
+               name="search"
+               placeholder="Search contacts..."
+               value="{{ search }}">
+               <button type="submit">
+               Search
+              </button>
+            </form>
+         </div>
+         <div class="image">
+            <img src="{{ url_for('static', filename='image/HOME1.png') }}"
+            width="250" height="200"/>
+         </div>
+      </div>
+      <div class="contacts">
+         <h2>All Contacts</h2>
+         <table>
+         <tr>
+            <th>Name</th>
+            <th>Phone</th>
+         </tr>
+         {% for contact in contacts %}
+         <tr>
+            <td>{{ contact["name"] }}</td>
+            <td>{{ contact["phone"] }}</td>
+         </tr>
+         {% endfor %}
+         </table>
+      </div>
+      <script src="{{ url_for('static', filename='script.js') }}"></script>
+   </body>
+</html> 

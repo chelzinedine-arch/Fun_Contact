@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Developer Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap"
+        rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+     <div class="lfog tisa3">
+        <div class="logo-user">
+          <img src="{{ url_for('static', filename='image/HOME.png') }}"
+             width="120"/>
+             {% if session.get("username") %}
+          <span class="welcome-user">
+              Welcome, {{ session["username"] }}
+           </span>
+           {% endif %}
+        </div>
+        <div class="tisa3 lonedialelein lfog">
+           <a href="/">HOME</a>
+           <a href="/add">ADD</a>
+           <a href="/update">UPDP</a>
+           <a href="/delete">DELP</a>
+           <a href="/account">ACCOUNT</a>
+           <a href="/developer">DEVI</a>
+           {% if session.get("username") %}
+            <a href="/logout">
+                LOGOUT
+            </a>
+            {% else %}
+            <a href="/signin" class="sign-in">
+                SIGN IN
+            </a>
+            {% endif %}
+         </div>
+      </div>
+    <div class="lmohtawa">
+        <div class="lhade">
+            <span class="diali">
+                Welcome to Developer Information
+            </span>
+            <p>
+                This page provides information about the developer
+                of the Fun Contact website.
+                The project was created to provide a simple,
+                practical and easy-to-use contact management system.
+            </p>
+        </div>
+        <div class="image">
+            <img
+                src="{{ url_for('static', filename='image/DEVI.png') }}"
+                width="250"
+                height="200">
+        </div>
+    </div>
+    <div class="add-box">
+        <h2>Developer Information</h2>
+        <div class="developer-info">
+            <p>
+                <strong>Name:</strong>
+                Mohamed Zinedine chel
+            </p>
+            <p>
+                <strong>Project:</strong>
+                Fun_Contact
+            </p>
+            <p>
+                <strong>Technology:</strong>
+                Python, Flask, HTML, CSS, SQLite
+            </p>
+            <p>
+                <strong>Database:</strong>
+                SQLite3
+            </p>
+            <p class="instagram-contact">
+              <strong>Contact Information:</strong>
+              <a href="https://www.instagram.com/med_zin.dine/" target="_blank">
+              <i class="fa-brands fa-instagram"></i>
+               @med_zin.dine
+               </a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
