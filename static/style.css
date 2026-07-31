@@ -110,6 +110,7 @@ body { margin: 0; font-family: "Roboto", sans-serif;}
     .image img { padding: 20px 0; max-width: 100%; height: auto;}
     .contacts { width: 90%;}}
 @media screen and (max-width: 600px) {
+    
     body { width: 100%; overflow-x: hidden;}
     .lfog { width: 100%; box-sizing: border-box; padding: 15px 10px;}
     .lfog img { width: 90px; height: auto;}
