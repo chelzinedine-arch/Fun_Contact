@@ -12,6 +12,28 @@
     <link rel="stylesheet"
     href="{{ url_for('static', filename='style.css') }}">
    <body>
+      <div class="mobile-header">
+
+        <img
+           class="mobile-logo"
+           src="{{ url_for('static', filename='image/HOME.png') }}">
+        <button class="menu-btn" onclick="toggleMenu()">
+           ☰
+         </button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/">HOME</a>
+        <a href="/add">ADD</a>
+        <a href="/update">UPDP</a>
+       <a href="/delete">DELP</a>
+       <a href="/account">ACCOUNT</a>
+       <a href="/developer">DEVI</a>
+       {% if session.get("username") %}
+        <a href="/logout">LOGOUT</a>
+       {% else %}
+        <a href="/signin">SIGN IN</a>
+       {% endif %}
+      </div>
      <div class="lfog tisa3">
         <div class="logo-user">
           <img src="{{ url_for('static', filename='image/HOME.png') }}"
