@@ -62,31 +62,33 @@
             {% endif %}
          </div>
       </div>
-      <div class="lmohtawa ">
-         <div class="lhade">
-            <span class="dialin">welcome to fun_contact</span>
-            <p>This site is a simple and practical contact management system that allows the user to save people's names and phone numbers in one place in an organized and easy-to-access manner.
+       src="{{ url_for('static', filename='image/HOME1.png') }}"
+        alt="Fun Contact">
+    </div>
+    <div class="hero-right">
+        <h1>Welcome to Fun Contact</h1>
+        <p>
+           This site is a simple and practical contact management system that allows the user to save people's names and phone numbers in one place in an organized and easy-to-access manner.
                 The site helps keep data on people you know without having to search different places.
                 The site provides a set of basic functions, such as ADD a new contact, UPDP data for an existing contact, and DELP any contact that no longer needs it.
                  It also displays all contacts in an organized list for easy access and management.
                  This site aims to provide a fast and secure way to organize contact data, making the process of saving and managing names and numbers easier and more efficient. It also features a simple user interface that suits all users, helping them complete tasks easily and without complexity.
-            </p>
-           <h3 class="dialin">Find a contact!</h3>  
-            <form class="search" method="GET">
-             <input
-               type="text"
-               name="search"
-               placeholder="Search contacts..."
-               value="{{ search }}">
-               <button type="submit">
-               Search
-              </button>
-            </form>
-         </div>
-         <div class="image">
-            <img src="{{ url_for('static', filename='image/HOME1.png') }}"
-            width="250" height="200"/>
-         </div>
+        </p>
+        <div class="hero-info">
+            <div>✔ Fast Contact Management</div>
+            <div>✔ Secure User Accounts</div>
+            <div>✔ Easy and Modern Interface</div>
+        </div>
+        <form class="search" method="GET">
+            <input
+                type="text"
+                name="search"
+                placeholder="Search contacts..."
+                value="{{ search }}">
+            <button type="submit">
+                Search
+            </button>
+        </form>
       </div>
       <div class="contacts">
          <h2>All Contacts</h2>

@@ -141,11 +141,29 @@ body { margin: 0; font-family: "Roboto", sans-serif;}
     .mobile-header{display:none;}
     .mobile-menu{display:none;}
 @media screen and (max-width:900px){
-.lfog{display:none;}
-.mobile-header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:#00ffff;position:sticky;top:0;z-index:999;}
-.mobile-logo{width:110px;height:auto;}
-.menu-btn{background:none;border:none;font-size:35px;font-weight:bold;cursor:pointer;}
-.mobile-menu{display:flex;flex-direction:column;position:fixed;top:0;right:-280px;width:250px;height:100%;background:#00ffff;padding-top:80px;transition:0.4s;z-index:1000;box-shadow:-5px 0 15px rgba(0,0,0,.3);}
-.mobile-menu a{text-decoration:none;color:#ff0000;font-size:22px;font-weight:bold;padding:18px 25px;border-bottom:1px solid rgba(255,255,255,.4);}
-.mobile-menu a:hover{background:white;}
-.show-menu{right:0;}}
+  .lfog{display:none;}
+  .mobile-header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:#00ffff;position:sticky;top:0;z-index:999;}
+  .mobile-logo{width:110px;height:auto;}
+  .menu-btn{background:none;border:none;font-size:35px;font-weight:bold;cursor:pointer;}
+  .mobile-menu{display:flex;flex-direction:column;position:fixed;top:0;right:-280px;width:250px;height:100%;background:#00ffff;padding-top:80px;transition:0.4s;z-index:1000;box-shadow:-5px 0 15px rgba(0,0,0,.3);}
+  .mobile-menu a{text-decoration:none;color:#ff0000;font-size:22px;font-weight:bold;padding:18px 25px;border-bottom:1px solid rgba(255,255,255,.4);}
+  .mobile-menu a:hover{background:white;}
+  .show-menu{right:0;}}
+.hero{width:90%;margin:40px auto;display:flex;justify-content:space-between;align-items:center;gap:60px;}
+.hero-left{flex:1;display:flex;justify-content:center;}
+.hero-left img{width:100%;max-width:420px;animation:float 4s ease-in-out infinite;}
+.hero-right{flex:1;}
+.hero-right h1{font-size:42px;color:#ff0000;margin-bottom:20px;}
+.hero-right p{font-size:18px;line-height:1.8;color:#444;margin-bottom:25px;}
+.hero-info{display:flex;flex-direction:column;gap:15px;margin-bottom:30px;font-weight:700;}
+.hero-info div{ background:#ffffff; padding:14px 18px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,.08);}
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}}
+@media(max-width:900px){
+  .hero{flex-direction:column;text-align:center;}
+  .hero-right{order:2;}
+  .hero-left{order:1;}
+  .hero-left img{max-width:300px;}
+  .hero-right h1{font-size:32px;}}
