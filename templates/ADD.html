@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Contact</title>
+    <title>Add Contact | Fun Contact</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,73 +10,84 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-     <div class="lfog tisa3">
-        <div class="logo-user">
-          <img src="{{ url_for('static', filename='image/HOME.png') }}"
-             width="120"/>
-             {% if session.get("username") %}
-          <span class="welcome-user">
-              Welcome, {{ session["username"] }}
-           </span>
-           {% endif %}
-        </div>
-        <div class="tisa3 lonedialelein lfog">
-           <a href="/">HOME</a>
-           <a href="/add">ADD</a>
-           <a href="/update">UPDP</a>
-           <a href="/delete">DELP</a>
-           <a href="/account">ACCOUNT</a>
-           <a href="/developer">DEVI</a>
-           {% if session.get("username") %}
-            <a href="/logout">
-                LOGOUT
-            </a>
-            {% else %}
-            <a href="/signin" class="sign-in">
-                SIGN IN
-            </a>
-            {% endif %}
-         </div>
-      </div>
-    <div class=" lmohtawa">
-        <div class="lhade">
-          <span class="diali">welcome to ADD a new contacts</span>
-          <p>This site is a simple and practical contact management system that allows the user to save people's names and phone numbers in one place in an organized and easy-to-access manner.
-             The site helps keep data on people you know by providing the basic function to ADD a new contact instantly to the system.
-              It displays all these added contacts in an organized list directly on the homepage for quick access, ensuring that every new entry strictly includes both a name and a phone number to be successfully saved.
-               This site aims to provide a fast and secure way to organize contact data, making the process of saving names and numbers easier and more efficient through a simple user interface that suits all users.
-          </p>
-        </div>
-        <div class="image">
-             <img class="imagepage2" src="{{ url_for('static', filename='image/ADD.png') }}"
-             width="250" height="200"/>
-        </div>
-    </div>
-    <div class="add-box">
-      <h2>Add Contact</h2>
-       {% if message %}
-         <p class="message">{{ message }}</p>
-       {% endif %}
-       <form method="POST">
-           <label>Name</label>
-           <input
-              type="text"
-              name="name"
-              placeholder="Enter Name"
-              required
-            >
-           <label>Phone</label>
-           <input 
-             type="text"
-             name="phone"
-             placeholder="Enter Phone Number"
-             required
-            >
-           <button type="submit">
-            Add Contact
-           </button>
-      </form>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<div class="mobile-header">
+<img class="mobile-logo" src="{{ url_for('static', filename='image/HOME.png') }}">
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDP</a>
+<a href="/delete">DELP</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVI</a>
+<a href="/logout">LOGOUT</a>
+</div>
+<header class="lfog">
+<div class="logo-user">
+<img src="{{ url_for('static', filename='image/HOME.png') }}" width="120">
+{% if session.get("username") %}
+<span class="welcome-user">
+Welcome, {{ session["username"] }}
+</span>
+{% endif %}
+</div>
+<div class="lonedialelein">
+<a href="/">HOME</a>
+<a href="/add" class="sign-in">ADD</a>
+<a href="/update">UPDP</a>
+<a href="/delete">DELP</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVI</a>
+<a href="/logout">LOGOUT</a>
+</div>
+</header>
+<section class="hero fade-in">
+<div class="hero-left">
+<img src="{{ url_for('static', filename='image/HOME1.png') }}">
+</div>
+<div class="hero-right">
+<h1>Add New Contact</h1>
+<p>
+Create a new contact by entering the person's name and phone number.
+The contact will be securely saved in your account.
+</p>
+{% if message %}
+<div class="message">
+{{ message }}
+</div>
+{% endif %}
+<form action="/add" method="POST" class="add-box">
+<label>
+Name
+</label>
+<input
+type="text"
+name="name"
+placeholder="Enter contact name"
+required>
+<label>
+Phone
+</label>
+<input
+type="text"
+name="phone"
+placeholder="Enter phone number"
+required>
+<button type="submit">
+ADD CONTACT
+</button>
+</form>
+</div>
+</section>
+<footer>
+<h3>
+Fun Contact
+</h3>
+<p>
+© 2026 All Rights Reserved.
+</p>
+</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

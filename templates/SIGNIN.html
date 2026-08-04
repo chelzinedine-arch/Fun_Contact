@@ -1,70 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sign In</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In | Fun Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="lfog tisa3 lmohtawa">
-        <img
-            src="{{ url_for('static', filename='image/HOME.png') }}"
-            width="120">
-        <div class="tisa3 lonedialelein">
-            <a href="/">HOME</a>
-            <a href="/add">ADD</a>
-            <a href="/update">UPDP</a>
-            <a href="/delete">DELP</a>
-            <a href="/account">ACCOUNT</a>
-            <a href="/developer">DEVI</a>
-        </div>
-    </div>
-    <div class="add-box">
-        <h2>Sign In</h2>
-        {% if message %}
-        <p class="signup-message">
-            {{ message }}
-        </p>
-        {% endif %}
-       <form method="POST">
-         <label>Username</label>
-         <input
-             type="text"
-             name="username"
-             placeholder="Enter Username"
-             required
-            >
-         <label>Password</label>
-        <div class="password-wrapper">
-          <input
-             type="password"
-             name="password"
-             id="password"
-             placeholder="Enter your password"
-             required
-            >
-           <span
-             class="password-eye"
-             onclick="togglePassword()"
-             id="password-eye"
-            >
-             👁️
-            </span>
-        </div>
-         <button type="submit">
-             SIGN IN
-         </button>
-       </form>
-       <p class="account-link">
-          Don't have an account?
-         <a href="/signup">
-             Create Account
-         </a>
-       </p>
-      <script src="{{ url_for('static', filename='script.js') }}"></script>
-    </div>
+<header class="header">
+<div class="container header-content">
+<div class="logo">
+<img src="{{ url_for('static', filename='image/HOME.png') }}">
+</div>
+<nav class="navbar">
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
+<a href="/signin" class="login-btn">SIGN IN</a>
+</nav>
+<div class="menu-icon" onclick="toggleMenu()">
+☰
+</div>
+</div>
+<div id="mobileMenu" class="mobile-menu">
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
+<a href="/signin">SIGN IN</a>
+</div>
+</header>
+<section class="hero">
+<div class="container hero-content">
+<div class="hero-left">
+<img src="{{ url_for('static', filename='image/SIGNIN.png') }}">
+</div>
+<div class="hero-right">
+<h1>
+Welcome Back
+</h1>
+<p>
+Sign in to your Fun Contact account to manage your contacts securely from anywhere.
+</p>
+</div>
+</div>
+</section>
+<section class="form-section">
+<div class="form-card fade-in">
+<h2>
+Sign In
+</h2>
+<p>
+Enter your account information.
+</p>
+{% if error %}
+<div class="message error">
+{{ error }}
+</div>
+{% endif %}
+<form method="POST">
+<div class="form-group">
+<label>
+Username
+</label>
+<input
+type="text"
+name="username"
+placeholder="Enter your username"
+required>
+</div>
+<div class="form-group">
+<label>
+Password
+</label>
+<div class="password-box">
+<input
+type="password"
+id="password"
+name="password"
+placeholder="Enter your password"
+required>
+<span
+id="password-eye"
+class="password-eye"
+onclick="togglePassword('password','password-eye')">
+👁️
+</span>
+</div>
+</div>
+<button
+type="submit"
+class="form-btn">
+SIGN IN
+</button>
+</form>
+<div class="sign-links">
+Don't have an account?
+<a href="/signup">
+Create one
+</a>
+</div>
+</div>
+</section>
+<footer>
+<div class="container footer-content">
+<div class="footer-logo">
+<img src="{{ url_for('static', filename='image/HOME.png') }}">
+<p>
+Fun Contact makes managing contacts easy, fast and secure.
+</p>
+</div>
+<div class="footer-links">
+<h3>
+Quick Links
+</h3>
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+</div>
+<div class="footer-account">
+<h3>
+Account
+</h3>
+<a href="/signin">
+Sign In
+</a>
+<a href="/signup">
+Create Account
+</a>
+</div>
+<div class="footer-about">
+<h3>
+About
+</h3>
+<p>
+Built with Flask & PostgreSQL.
+</p>
+</div>
+</div>
+<div class="copyright">
+© 2026 Fun Contact • All Rights Reserved.
+</div>
+</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

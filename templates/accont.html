@@ -1,137 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Account</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account | Fun Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="lfog tisa3">
-        <img
-            src="{{ url_for('static', filename='image/HOME.png') }}"
-            width="120">
-        <div class="tisa3 lonedialelein">
-            <a href="/">HOME</a>
-            <a href="/add">ADD</a>
-            <a href="/update">UPDP</a>
-            <a href="/delete">DELP</a>
-            <a href="/developer">DEVI</a>
-            <a href="/account">ACCOUNT</a>
-            <a href="/logout">LOGOUT</a>
-        </div>
-    </div>
-    <div class="account-box">
-        <h2>My Account</h2>
-        {% if message %}
-        <p class="account-message">
-            {{ message }}
-        </p>
-        {% endif %}
-        <div class="account-info">
-            <p>
-                <strong>Username:</strong>
-                {{ user["username"] }}
-            </p>
-            <p>
-                <strong>Email:</strong>
-                {{ user["email"] }}
-            </p>
-        </div>
-        <div class="account-section">
-            <h3>Edit Account</h3>
-            <form
-                action="/update_account"
-                method="POST">
-                <label>Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    value="{{ user['username'] }}"
-                    required
-                >
-                <label>Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value="{{ user['email'] }}"
-                    required
-                >
-                <button type="submit">
-                    Save Changes
-                </button>
-            </form>
-        </div>
-        <div class="account-section">
-           <h3>Change Password</h3>
-           <form action="/change_password" method="POST">
-             <label>Current Password</label>
-             <div class="password-wrapper">
-                 <input
-                     type="password"
-                     name="current_password"
-                     id="current-password"
-                     placeholder="Enter Current Password"
-                     required
-                    >
-                   <span
-                     class="password-eye"
-                     onclick="toggleAccountPassword('current-password', 'current-password-eye')"
-                     id="current-password-eye"
-                   >👁️</span>
-             </div>
-             <label>New Password</label>
-              <div class="password-wrapper">
-                 <input
-                     type="password"
-                     name="new_password"
-                     id="new-password"
-                     placeholder="Enter New Password"
-                     required
-                   >
-                 <span
-                     class="password-eye"
-                     onclick="toggleAccountPassword('new-password', 'new-password-eye')"
-                     id="new-password-eye"
-                   >👁️</span>
-                </div>
-              <label>Confirm New Password</label>
-              <div class="password-wrapper">
-                   <input
-                     type="password"
-                     name="confirm_password"
-                     id="confirm-password"
-                     placeholder="Confirm New Password"
-                     required
-                    >
-                   <span
-                     class="password-eye"
-                     onclick="toggleAccountPassword('confirm-password', 'confirm-password-eye')"
-                     id="confirm-password-eye"
-                   >👁️</span>
-                </div>
-              <button type="submit">
-                 Change Password
-              </button>
-           </form>
-       </div>
-        <div class="account-buttons">
-            <a
-                href="/"
-                class="account-button">
-                HOME
-            </a>
-            <a
-                href="/logout"
-                class="account-button logout-button">
-                LOGOUT
-            </a>
-        </div>
-    </div>
-    <script
-        src="{{ url_for('static', filename='script.js') }}">
-    </script>
+<header class="header">
+<div class="container header-content">
+<div class="logo">
+<img src="{{ url_for('static', filename='image/HOME.png') }}">
+</div>
+<nav class="navbar">
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
+{% if session.get("username") %}
+<a href="/logout" class="login-btn">LOGOUT</a>
+{% else %}
+<a href="/signin" class="login-btn">SIGN IN</a>
+{% endif %}
+</nav>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+</div>
+<div id="mobileMenu" class="mobile-menu">
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
+{% if session.get("username") %}
+<a href="/logout">LOGOUT</a>
+{% else %}
+<a href="/signin">SIGN IN</a>
+{% endif %}
+</div>
+</header>
+<section class="hero">
+<div class="container hero-content">
+<div class="hero-left">
+<img src="{{ url_for('static', filename='image/ACCOUNT.png') }}">
+</div>
+<div class="hero-right">
+<h1>My Account</h1>
+<p>Manage your personal information and keep your Fun Contact account secure. You can update your username, email and password whenever you want.</p>
+</div>
+</div>
+</section>
+<section class="form-section">
+<div class="form-card fade-in">
+<h2>Account Information</h2>
+<p>Edit your profile below.</p>
+{% if message %}
+<div class="message success">{{ message }}</div>
+{% endif %}
+{% if error %}
+<div class="message error">{{ error }}</div>
+{% endif %}
+<form method="POST">
+<div class="form-group">
+<label>Username</label>
+<input type="text" name="username" value="{{ user['username'] }}" required>
+</div>
+<div class="form-group">
+<label>Email</label>
+<input type="email" name="email" value="{{ user['email'] }}" required>
+</div>
+<div class="form-group">
+<label>New Password</label>
+<div class="password-box">
+<input type="password" id="new-password" name="password" placeholder="Leave empty if you don't want to change it">
+<span id="new-password-eye" class="password-eye" onclick="togglePassword('new-password','new-password-eye')">👁️</span>
+</div>
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+<div class="password-box">
+<input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm new password">
+<span id="confirm-password-eye" class="password-eye" onclick="togglePassword('confirm-password','confirm-password-eye')">👁️</span>
+</div>
+</div>
+<button type="submit" class="form-btn">SAVE CHANGES</button>
+</form>
+</div>
+</section>
+<footer>
+<div class="container footer-content">
+<div class="footer-logo">
+<img src="{{ url_for('static', filename='image/HOME.png') }}">
+<p>Fun Contact helps you organize your contacts easily, safely and professionally.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+</div>
+<div class="footer-account">
+<h3>Account</h3>
+<a href="/account">My Account</a>
+<a href="/logout">Logout</a>
+</div>
+<div class="footer-about">
+<h3>Developer</h3>
+<p>Fun Contact Management System<br>Version 1.0</p>
+</div>
+</div>
+<div class="copyright">
+© 2026 Fun Contact • All Rights Reserved.
+</div>
+</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
