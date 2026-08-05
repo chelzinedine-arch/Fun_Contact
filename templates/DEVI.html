@@ -11,10 +11,11 @@
 </head>
 <body>
 <header class="header">
-<div class="container header-content">
-<div class="logo">
-<img src="{{ url_for('static', filename='image/HOME.png') }}">
+<div>
+<img src="{{ url_for('static', filename='image/HOME.png') }}" *
+width="10">
 </div>
+<div class="container header-content">
 <nav class="navbar">
 <a href="/">HOME</a>
 <a href="/add">ADD</a>
@@ -23,12 +24,18 @@
 <a href="/account">ACCOUNT</a>
 <a href="/developer">DEVELOPER</a>
 {% if session.get("username") %}
-<a href="/logout" class="login-btn">LOGOUT</a>
+<a href="/logout" class="login-btn">
+LOGOUT
+</a>
 {% else %}
-<a href="/signin" class="login-btn">SIGN IN</a>
+<a href="/signin" class="login-btn">
+SIGN IN
+</a>
 {% endif %}
 </nav>
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="menu-icon" onclick="toggleMenu()">
+☰
+</div>
 </div>
 <div id="mobileMenu" class="mobile-menu">
 <a href="/">HOME</a>
@@ -38,77 +45,116 @@
 <a href="/account">ACCOUNT</a>
 <a href="/developer">DEVELOPER</a>
 {% if session.get("username") %}
-<a href="/logout">LOGOUT</a>
+<a href="/logout">
+LOGOUT
+</a>
 {% else %}
-<a href="/signin">SIGN IN</a>
+<a href="/signin">
+SIGN IN
+</a>
 {% endif %}
 </div>
 </header>
 <section class="hero">
 <div class="container hero-content">
-<div class="hero-left">
-<img src="{{ url_for('static', filename='image/DEVELOPER.png') }}">
+<img src="{{ url_for('static', filename='image/DEVI.png') }}" >
 </div>
-<div class="hero-right">
-<h1>Developer Information</h1>
-<p>Meet the developer behind the Fun Contact project. This application was created to provide a simple, secure and modern way to manage contacts using Flask, HTML, CSS, JavaScript and PostgreSQL/SQLite.</p>
+<div class="hero-text">
+<h1>
+Developer Information
+</h1>
+<p>
+Meet the developer behind Fun Contact and discover the technologies, tools and ideas used to build this modern contact management system.
+</p>
+<div class="developer-card">
+<div class="developer-profile">
+<img
+src="{{ url_for('static', filename='image/HOME23.png') }}"
+class="developer-photo">
+<h2>
+Mohamed Zinedine
+</h2>
+<p class="developer-role">
+Python & Flask Developer
+</p>
+</div>
+<div class="developer-info">
+<div class="info-item">
+<strong>Project</strong>
+<span>Fun Contact</span>
+</div>
+<div class="info-item">
+<strong>Language</strong>
+<span>Python • HTML • CSS • JavaScript</span>
+</div>
+<div class="info-item">
+<strong>Framework</strong>
+<span>Flask</span>
+</div>
+<div class="info-item">
+<strong>Database</strong>
+<span>PostgreSQL</span>
+</div>
+<div class="info-item">
+<strong>Version</strong>
+<span>1.0.0</span>
+</div>
+<div class="info-item">
+<strong>Description</strong>
+<span>
+Fun Contact is a modern contact management system that allows users to create accounts, securely manage contacts, search, update and delete information through a clean and responsive interface.
+</span>
 </div>
 </div>
-</section>
-<section class="form-section">
-<div class="form-card">
-<h2>Developer Profile</h2>
-<div class="form-group">
-<label>Developer Name</label>
-<input type="text" value="Mohamed Zindin" readonly>
 </div>
-<div class="form-group">
-<label>Country</label>
-<input type="text" value="Morocco" readonly>
-</div>
-<div class="form-group">
-<label>Project</label>
-<input type="text" value="Fun Contact Management System" readonly>
-</div>
-<div class="form-group">
-<label>Languages</label>
-<input type="text" value="Python, Flask, HTML, CSS, JavaScript, SQL" readonly>
-</div>
-<div class="form-group">
-<label>Description</label>
-<textarea readonly>This project was developed to help users manage contacts easily through a modern and responsive web application. It supports creating accounts, adding contacts, updating information, deleting contacts and searching instantly.</textarea>
 </div>
 </div>
 </section>
 <footer>
 <div class="container footer-content">
+<img src="{{ url_for('static', filename='image/HOME23.png') }}">
 <div class="footer-logo">
-<img src="{{ url_for('static', filename='image/HOME.png') }}">
-<p>Fun Contact helps you organize your contacts quickly, safely and professionally.</p>
+<p>
+Fun Contact is a modern contact management system developed using Flask and PostgreSQL to provide a fast, secure and responsive experience for managing personal contacts.
+</p>
 </div>
 <div class="footer-links">
-<h3>Quick Links</h3>
+<h3>
+Quick Links
+</h3>
 <a href="/">HOME</a>
 <a href="/add">ADD</a>
 <a href="/update">UPDATE</a>
 <a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
 </div>
 <div class="footer-account">
-<h3>Account</h3>
-<a href="/account">My Account</a>
+<h3>
+Developer
+</h3>
+<p>
+Created By
+</p>
+<strong>
+Mohamed Zindin
+</strong>
+<p>
+Python • Flask • PostgreSQL
+</p>
 {% if session.get("username") %}
-<a href="/logout">Logout</a>
+<a href="/logout">
+LOGOUT
+</a>
 {% else %}
-<a href="/signin">Sign In</a>
+<a href="/signin">
+SIGN IN
+</a>
 {% endif %}
-</div>
-<div class="footer-about">
-<h3>Version</h3>
-<p>Fun Contact v1.0<br>2026 Edition</p>
 </div>
 </div>
 <div class="copyright">
-© 2026 Fun Contact • All Rights Reserved.
+© 2026 Fun Contact • All Rights Reserved
 </div>
 </footer>
 <script src="{{ url_for('static', filename='script.js') }}"></script>

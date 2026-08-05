@@ -22,7 +22,9 @@
 <a href="/delete">DELETE</a>
 <a href="/account">ACCOUNT</a>
 <a href="/developer">DEVELOPER</a>
-<a href="/signin" class="login-btn">SIGN IN</a>
+<a href="/signin" class="login-btn">
+SIGN IN
+</a>
 </nav>
 <div class="menu-icon" onclick="toggleMenu()">
 ☰
@@ -35,38 +37,33 @@
 <a href="/delete">DELETE</a>
 <a href="/account">ACCOUNT</a>
 <a href="/developer">DEVELOPER</a>
-<a href="/signin">SIGN IN</a>
+<a href="/signin">
+SIGN IN
+</a>
 </div>
 </header>
 <section class="hero">
 <div class="container hero-content">
-<div class="hero-left">
+<div class="hero-image">
 <img src="{{ url_for('static', filename='image/SIGNIN.png') }}">
 </div>
-<div class="hero-right">
+<div class="hero-text">
 <h1>
 Welcome Back
 </h1>
 <p>
-Sign in to your Fun Contact account to manage your contacts securely from anywhere.
+Sign in to your Fun Contact account and securely access all your saved contacts from anywhere.
 </p>
+{% if message %}
+<div class="message">
+{{ message }}
 </div>
-</div>
-</section>
-<section class="form-section">
-<div class="form-card fade-in">
+{% endif %}
+<div class="form-card">
 <h2>
 Sign In
 </h2>
-<p>
-Enter your account information.
-</p>
-{% if error %}
-<div class="message error">
-{{ error }}
-</div>
-{% endif %}
-<form method="POST">
+<form action="/signin" method="POST">
 <div class="form-group">
 <label>
 Username
@@ -81,32 +78,34 @@ required>
 <label>
 Password
 </label>
-<div class="password-box">
 <input
 type="password"
-id="password"
 name="password"
 placeholder="Enter your password"
 required>
-<span
-id="password-eye"
-class="password-eye"
-onclick="togglePassword('password','password-eye')">
-👁️
-</span>
 </div>
-</div>
+<div class="form-buttons">
 <button
 type="submit"
-class="form-btn">
+class="btn-primary">
 SIGN IN
 </button>
+<button
+type="reset"
+class="btn-secondary">
+CLEAR
+</button>
+</div>
 </form>
-<div class="sign-links">
+<div class="account-link">
+<p>
 Don't have an account?
 <a href="/signup">
-Create one
+Create Account
 </a>
+</p>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -115,7 +114,7 @@ Create one
 <div class="footer-logo">
 <img src="{{ url_for('static', filename='image/HOME.png') }}">
 <p>
-Fun Contact makes managing contacts easy, fast and secure.
+Fun Contact is a secure contact management system that helps you organize, manage and access your contacts anytime.
 </p>
 </div>
 <div class="footer-links">
@@ -126,29 +125,23 @@ Quick Links
 <a href="/add">ADD</a>
 <a href="/update">UPDATE</a>
 <a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
 </div>
 <div class="footer-account">
 <h3>
 Account
 </h3>
 <a href="/signin">
-Sign In
+SIGN IN
 </a>
 <a href="/signup">
-Create Account
+CREATE ACCOUNT
 </a>
-</div>
-<div class="footer-about">
-<h3>
-About
-</h3>
-<p>
-Built with Flask & PostgreSQL.
-</p>
 </div>
 </div>
 <div class="copyright">
-© 2026 Fun Contact • All Rights Reserved.
+© 2026 Fun Contact • All Rights Reserved
 </div>
 </footer>
 <script src="{{ url_for('static', filename='script.js') }}"></script>

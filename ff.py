@@ -331,34 +331,28 @@ def signin():
         "SIGNIN.html",
         message=message
     )
-@app.route("/account")
+@app.route("/accont")
 def account():
     if "user_id" not in session:
         return redirect("/signin")
-
     user_id = session["user_id"]
-
     conn = get_db()
     cur = conn.cursor()
-
     cur.execute("""
         SELECT id,username,email
         FROM users
         WHERE id=%s
     """, (user_id,))
-
     user = cur.fetchone()
-
     conn.close()
-
     return render_template(
-        "ACCOUNT.html",
+        "accont.html",
         user=user,
         message=""
     )
 
 
-@app.route("/update_account", methods=["POST"])
+@app.route("/update_accont", methods=["POST"])
 def update_account():
     if "user_id" not in session:
         return redirect("/signin")
@@ -384,7 +378,7 @@ def update_account():
 
         conn.close()
 
-        return redirect("/account")
+        return redirect("/accont")
 
     except psycopg2.IntegrityError:
 
@@ -405,7 +399,7 @@ def update_account():
         conn.close()
 
         return render_template(
-            "ACCOUNT.html",
+            "accont.html",
             user=user,
             message="Username or email already exists."
         )

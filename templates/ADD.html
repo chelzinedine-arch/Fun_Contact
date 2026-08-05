@@ -1,92 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add Contact | Fun Contact</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Contact | Fun Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="mobile-header">
-<img class="mobile-logo" src="{{ url_for('static', filename='image/HOME.png') }}">
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<header class="header">
+<div class="container header-content">
+<div class="logo">
+<img src="{{ url_for('static', filename='image/HOME.png') }}">
 </div>
-<div class="mobile-menu" id="mobileMenu">
+<nav class="navbar">
 <a href="/">HOME</a>
 <a href="/add">ADD</a>
-<a href="/update">UPDP</a>
-<a href="/delete">DELP</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
 <a href="/account">ACCOUNT</a>
-<a href="/developer">DEVI</a>
-<a href="/logout">LOGOUT</a>
-</div>
-<header class="lfog">
-<div class="logo-user">
-<img src="{{ url_for('static', filename='image/HOME.png') }}" width="120">
+<a href="/developer">DEVELOPER</a>
 {% if session.get("username") %}
-<span class="welcome-user">
-Welcome, {{ session["username"] }}
-</span>
+<a href="/logout" class="login-btn">
+LOGOUT
+</a>
+{% else %}
+<a href="/signin" class="login-btn">
+SIGN IN
+</a>
+{% endif %}
+</nav>
+<div class="menu-icon" onclick="toggleMenu()">
+☰
+</div>
+</div>
+<div id="mobileMenu" class="mobile-menu">
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
+{% if session.get("username") %}
+<a href="/logout">
+LOGOUT
+</a>
+{% else %}
+<a href="/signin">
+SIGN IN
+</a>
 {% endif %}
 </div>
-<div class="lonedialelein">
-<a href="/">HOME</a>
-<a href="/add" class="sign-in">ADD</a>
-<a href="/update">UPDP</a>
-<a href="/delete">DELP</a>
-<a href="/account">ACCOUNT</a>
-<a href="/developer">DEVI</a>
-<a href="/logout">LOGOUT</a>
-</div>
 </header>
-<section class="hero fade-in">
-<div class="hero-left">
-<img src="{{ url_for('static', filename='image/HOME1.png') }}">
+<section class="hero">
+<div class="container hero-content">
+<div class="hero-image">
+<img src="{{ url_for('static', filename='image/ADD.png') }}">
 </div>
-<div class="hero-right">
-<h1>Add New Contact</h1>
+<div class="hero-text">
+<h1>
+Add New Contact
+</h1>
 <p>
-Create a new contact by entering the person's name and phone number.
-The contact will be securely saved in your account.
+Create a new contact by entering the person's name and phone number. Your contact will be securely saved in your personal account.
 </p>
 {% if message %}
 <div class="message">
 {{ message }}
 </div>
 {% endif %}
-<form action="/add" method="POST" class="add-box">
+<div class="form-card">
+<h2>
+Add Contact
+</h2>
+<form action="/add" method="POST">
+<div class="form-group">
 <label>
-Name
+Full Name
 </label>
 <input
 type="text"
 name="name"
 placeholder="Enter contact name"
 required>
+</div>
+<div class="form-group">
 <label>
-Phone
+Phone Number
 </label>
 <input
 type="text"
 name="phone"
 placeholder="Enter phone number"
 required>
-<button type="submit">
+</div>
+<div class="form-buttons">
+<button
+type="submit"
+class="btn-primary">
 ADD CONTACT
 </button>
+<button
+type="reset"
+class="btn-secondary">
+CLEAR
+</button>
+</div>
 </form>
+</div>
+</div>
 </div>
 </section>
 <footer>
-<h3>
-Fun Contact
-</h3>
+<div class="container footer-content">
+<div class="footer-logo">
+<img src="{{ url_for('static', filename='image/HOME.png') }}">
 <p>
-© 2026 All Rights Reserved.
+Fun Contact is a secure contact management system designed to help you organize your contacts quickly and easily.
 </p>
+</div>
+<div class="footer-links">
+<h3>
+Quick Links
+</h3>
+<a href="/">HOME</a>
+<a href="/add">ADD</a>
+<a href="/update">UPDATE</a>
+<a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
+</div>
+<div class="footer-account">
+<h3>
+Account
+</h3>
+{% if session.get("username") %}
+<p>
+Logged in as
+</p>
+<strong>
+{{ session["username"] }}
+</strong>
+<a href="/logout">
+LOGOUT
+</a>
+{% else %}
+<a href="/signin">
+SIGN IN
+</a>
+<a href="/signup">
+CREATE ACCOUNT
+</a>
+{% endif %}
+</div>
+</div>
+<div class="copyright">
+© 2026 Fun Contact • All Rights Reserved
+</div>
 </footer>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

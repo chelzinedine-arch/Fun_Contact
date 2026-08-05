@@ -23,12 +23,18 @@
 <a href="/account">ACCOUNT</a>
 <a href="/developer">DEVELOPER</a>
 {% if session.get("username") %}
-<a href="/logout" class="login-btn">LOGOUT</a>
+<a href="/logout" class="login-btn">
+LOGOUT
+</a>
 {% else %}
-<a href="/signin" class="login-btn">SIGN IN</a>
+<a href="/signin" class="login-btn">
+SIGN IN
+</a>
 {% endif %}
 </nav>
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="menu-icon" onclick="toggleMenu()">
+☰
+</div>
 </div>
 <div id="mobileMenu" class="mobile-menu">
 <a href="/">HOME</a>
@@ -38,99 +44,173 @@
 <a href="/account">ACCOUNT</a>
 <a href="/developer">DEVELOPER</a>
 {% if session.get("username") %}
-<a href="/logout">LOGOUT</a>
+<a href="/logout">
+LOGOUT
+</a>
 {% else %}
-<a href="/signin">SIGN IN</a>
+<a href="/signin">
+SIGN IN
+</a>
 {% endif %}
 </div>
 </header>
 <section class="hero">
 <div class="container hero-content">
-<div class="hero-left">
-<img src="{{ url_for('static', filename='image/UPDATE.png') }}">
+<div class="hero-image">
+<img src="{{ url_for('static', filename='image/UPDP.png') }}">
 </div>
-<div class="hero-right">
-<h1>Update Contact</h1>
-<p>Search for any saved contact then update its information quickly and safely.</p>
-<form class="search" method="GET">
-<input type="text" name="search" placeholder="Search contact..." value="{{ search }}">
-<button type="submit">SEARCH</button>
+<div class="hero-text">
+<h1>
+Update Contact
+</h1>
+<p>
+Search for a contact, select it from the list, edit its information and save your changes securely.
+</p>
+<form class="search" method="GET" action="/update">
+<input
+type="text"
+name="search"
+placeholder="Search contacts..."
+value="{{ search }}">
+<button type="submit">
+Search
+</button>
 </form>
-</div>
-</div>
-</section>
-<section class="contacts-section">
-<div class="container">
 <div class="table-card">
 <table>
 <thead>
 <tr>
 <th>Name</th>
-<th>Phone</th>
+<th>Phone Number</th>
 <th>Action</th>
 </tr>
 </thead>
 <tbody>
-{% for contact in contacts %}
+{% if contacts %}
+{% for contact_item in contacts %}
 <tr>
-<td>{{ contact["name"] }}</td>
-<td>{{ contact["phone"] }}</td>
 <td>
-<a href="/update/{{ contact['id'] }}">
-<button type="button">UPDATE</button>
+{{ contact_item["name"] }}
+</td>
+<td>
+{{ contact_item["phone"] }}
+</td>
+<td>
+<a
+href="/update/{{ contact_item['id'] }}"
+class="btn-update">
+UPDATE
 </a>
 </td>
 </tr>
 {% endfor %}
+{% else %}
+<tr>
+<td colspan="3" class="empty-table">
+No Contacts Found
+</td>
+</tr>
+{% endif %}
 </tbody>
 </table>
 </div>
-</div>
-</section>
-{% if selected %}
-<section class="form-section">
+{% if contact %}
 <div class="form-card">
-<h2>Update Information</h2>
-<form method="POST" action="/save_update">
-<input type="hidden" name="id" value="{{ selected['id'] }}">
+<h2>
+Update Contact
+</h2>
+<form
+action="/save_update"
+method="POST">
+<input
+type="hidden"
+name="id"
+value="{{ contact['id'] }}">
 <div class="form-group">
-<label>Name</label>
-<input type="text" name="name" value="{{ selected['name'] }}" required>
+<label>
+Full Name
+</label>
+<input
+type="text"
+name="name"
+value="{{ contact['name'] }}"
+placeholder="Enter contact name"
+required>
 </div>
 <div class="form-group">
-<label>Phone Number</label>
-<input type="text" name="phone" value="{{ selected['phone'] }}" required>
+<label>
+Phone Number
+</label>
+<input
+type="text"
+name="phone"
+value="{{ contact['phone'] }}"
+placeholder="Enter phone number"
+required>
 </div>
-<button type="submit" class="form-btn">SAVE CHANGES</button>
+<div class="btn-update">
+<button
+type="submit"
+class="btn-pimry">
+SAVE CHANGES
+</button>
+<a
+href="/update"
+class="btn-sucandar">
+CANCEL
+</a>
+</div>
 </form>
 </div>
-</section>
 {% endif %}
+</div>
+</div>
+</section>
 <footer>
 <div class="container footer-content">
 <div class="footer-logo">
 <img src="{{ url_for('static', filename='image/HOME.png') }}">
-<p>Fun Contact helps you manage your contacts professionally.</p>
+<p>
+Fun Contact is a secure contact management system designed to help you organize your contacts quickly and easily.
+</p>
 </div>
 <div class="footer-links">
-<h3>Quick Links</h3>
+<h3>
+Quick Links
+</h3>
 <a href="/">HOME</a>
 <a href="/add">ADD</a>
 <a href="/update">UPDATE</a>
 <a href="/delete">DELETE</a>
+<a href="/account">ACCOUNT</a>
+<a href="/developer">DEVELOPER</a>
 </div>
 <div class="footer-account">
-<h3>Account</h3>
-<a href="/account">My Account</a>
-<a href="/logout">Logout</a>
-</div>
-<div class="footer-about">
-<h3>Developer</h3>
-<p>Fun Contact Management System</p>
+<h3>
+Account
+</h3>
+{% if session.get("username") %}
+<p>
+Logged in as
+</p>
+<strong>
+{{ session["username"] }}
+</strong>
+<a href="/logout">
+LOGOUT
+</a>
+{% else %}
+<a href="/signin">
+SIGN IN
+</a>
+<a href="/signup">
+CREATE ACCOUNT
+</a>
+{% endif %}
 </div>
 </div>
 <div class="copyright">
-© 2026 Fun Contact • All Rights Reserved.
+© 2026 Fun Contact • All Rights Reserved
 </div>
 </footer>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
