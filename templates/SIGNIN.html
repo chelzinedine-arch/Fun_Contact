@@ -1,149 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign In | Fun Contact</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Fun Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap"
+        rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<header class="header">
-<div class="container header-content">
-<div class="logo">
-<img src="{{ url_for('static', filename='image/HOME.png') }}">
-</div>
-<nav class="navbar">
-<a href="/">HOME</a>
-<a href="/add">ADD</a>
-<a href="/update">UPDATE</a>
-<a href="/delete">DELETE</a>
-<a href="/account">ACCOUNT</a>
-<a href="/developer">DEVELOPER</a>
-<a href="/signin" class="login-btn">
-SIGN IN
-</a>
-</nav>
-<div class="menu-icon" onclick="toggleMenu()">
-☰
-</div>
-</div>
-<div id="mobileMenu" class="mobile-menu">
-<a href="/">HOME</a>
-<a href="/add">ADD</a>
-<a href="/update">UPDATE</a>
-<a href="/delete">DELETE</a>
-<a href="/account">ACCOUNT</a>
-<a href="/developer">DEVELOPER</a>
-<a href="/signin">
-SIGN IN
-</a>
-</div>
-</header>
-<section class="hero">
-<div class="container hero-content">
-<div class="hero-image">
-<img src="{{ url_for('static', filename='image/SIGNIN.png') }}">
-</div>
-<div class="hero-text">
-<h1>
-Welcome Back
-</h1>
-<p>
-Sign in to your Fun Contact account and securely access all your saved contacts from anywhere.
-</p>
-{% if message %}
-<div class="message">
-{{ message }}
-</div>
-{% endif %}
-<div class="form-card">
-<h2>
-Sign In
-</h2>
-<form action="/signin" method="POST">
-<div class="form-group">
-<label>
-Username
-</label>
-<input
-type="text"
-name="username"
-placeholder="Enter your username"
-required>
-</div>
-<div class="form-group">
-<label>
-Password
-</label>
-<input
-type="password"
-name="password"
-placeholder="Enter your password"
-required>
-</div>
-<div class="form-buttons">
-<button
-type="submit"
-class="btn-primary">
-SIGN IN
-</button>
-<button
-type="reset"
-class="btn-secondary">
-CLEAR
-</button>
-</div>
-</form>
-<div class="account-link">
-<p>
-Don't have an account?
-<a href="/signup">
-Create Account
-</a>
-</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<footer>
-<div class="container footer-content">
-<div class="footer-logo">
-<img src="{{ url_for('static', filename='image/HOME.png') }}">
-<p>
-Fun Contact is a secure contact management system that helps you organize, manage and access your contacts anytime.
-</p>
-</div>
-<div class="footer-links">
-<h3>
-Quick Links
-</h3>
-<a href="/">HOME</a>
-<a href="/add">ADD</a>
-<a href="/update">UPDATE</a>
-<a href="/delete">DELETE</a>
-<a href="/account">ACCOUNT</a>
-<a href="/developer">DEVELOPER</a>
-</div>
-<div class="footer-account">
-<h3>
-Account
-</h3>
-<a href="/signin">
-SIGN IN
-</a>
-<a href="/signup">
-CREATE ACCOUNT
-</a>
-</div>
-</div>
-<div class="copyright">
-© 2026 Fun Contact • All Rights Reserved
-</div>
-</footer>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img
+                        src="{{ url_for('static', filename='image/HOME.png') }}"
+                        alt="Fun Contact">
+                </a>
+            </div>
+            <nav class="navbar">
+                <a href="/">HOME</a>
+                <a href="/add">ADD</a>
+                <a href="/update">UPDATE</a>
+                <a href="/delete">DELETE</a>
+                <a href="/account">ACCOUNT</a>
+                <a href="/developer">DEVELOPER</a>
+                <a href="/signin" class="login-btn">
+                    SIGN IN
+                </a>
+            </nav>
+            <div class="menu-icon" onclick="toggleMenu()" aria-label="Open menu">
+                ☰
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="/">HOME</a>
+            <a href="/add">ADD</a>
+            <a href="/update">UPDATE</a>
+            <a href="/delete">DELETE</a>
+            <a href="/account">ACCOUNT</a>
+            <a href="/developer">DEVELOPER</a>
+            <a href="/signin">
+                SIGN IN
+            </a>
+        </div>
+    </header>
+    <main>
+        <section class="hero fade-in">
+            <div class="container hero-content">
+                <div class="hero-image">
+                    <img
+                        src="{{ url_for('static', filename='image/HOME1.png') }}"
+                        alt="Fun Contact">
+                </div>
+                <div class="hero-text">
+                    <h1>
+                        Welcome Back
+                    </h1>
+                    <p>
+                        Sign in to your Fun Contact account and securely
+                        access all your saved contacts from anywhere.
+                    </p>
+                    {% if message %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                    <div class="form-card">
+                        <h2>
+                            Sign In
+                        </h2>
+                        <form action="/signin" method="POST">
+                            <div class="form-group">
+                                <label for="username">
+                                    Username
+                                </label>
+                                <input
+                                    id="username"
+                                    type="text"
+                                    name="username"
+                                    placeholder="Enter your username"
+                                    autocomplete="username"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">
+                                    Password
+                                </label>
+                                <div class="password-box">
+                                    <input
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        autocomplete="current-password"
+                                        required>
+                                    <span
+                                        class="password-eye"
+                                        onclick="togglePassword()"
+                                        title="Show password">
+                                        👁
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-buttons">
+                                <button type="submit" class="btn-primary">
+                                    SIGN IN
+                                </button>
+                                <button  type="reset"  class="btn-secondary">
+                                    CLEAR
+                                </button>
+                            </div>
+                        </form>
+                        <div class="account-link">
+                            <p>
+                                Don't have an account?
+                                <a href="/signup">
+                                    Create Account
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img
+                    src="{{ url_for('static', filename='image/HOME.png') }}"
+                    alt="Fun Contact"
+                >
+                <p>
+                    Fun Contact is a secure contact management system
+                    that helps you organize, manage and access your
+                    contacts anytime.
+                </p>
+            </div>
+            <div class="footer-links">
+                <h3>
+                    Quick Links
+                </h3>
+                <a href="/">
+                    HOME
+                </a>
+                <a href="/add">
+                    ADD
+                </a>
+                <a href="/update">
+                    UPDATE
+                </a>
+                <a href="/delete">
+                    DELETE
+                </a>
+                <a href="/account">
+                    ACCOUNT
+                </a>
+                <a href="/developer">
+                    DEVELOPER
+                </a>
+            </div>
+            <div class="footer-account">
+                <h3>
+                    Account
+                </h3>
+                <a href="/signin">
+                    SIGN IN
+                </a>
+                <a href="/signup">
+                    CREATE ACCOUNT
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Fun Contact • All Rights Reserved
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Contact | Fun Contact</title>
+    <title>Home | Fun Contact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
                     DEVELOPER
                 </a>
                 {% if session.get("username") %}
-                    <a href="/logout" class="login-btn">
+                    <a  href="/logout"  class="login-btn">
                         LOGOUT
                     </a>
                 {% else %}
@@ -49,7 +49,11 @@
                     </a>
                 {% endif %}
             </nav>
-            <div class="menu-icon" onclick="toggleMenu()" aria-label="Open menu">
+            <div
+                class="menu-icon"
+                onclick="toggleMenu()"
+                aria-label="Open menu"
+            >
                 ☰
             </div>
         </div>
@@ -87,63 +91,88 @@
         <section class="hero fade-in">
             <div class="container hero-content">
                 <div class="hero-image">
-                    <img src="{{ url_for('static', filename='image/ADD.png') }}" alt="Add Contact">
+                    <img src="{{ url_for('static', filename='image/HOME1.png') }}" alt="Fun Contact"
+                    >
                 </div>
                 <div class="hero-text">
                     <h1>
-                        Add New Contact
+                        Welcome To Fun Contact
                     </h1>
                     <p>
-                        Create a new contact by entering the person's
-                        name and phone number. Your contact will be
-                        securely saved in your personal account.
+                        Fun Contact is a modern contact management
+                        system that allows you to save, update, search
+                        and delete contacts easily through a simple
+                        and secure interface.
                     </p>
-                    {% if message %}
-                        <div class="message">
-                            {{ message }}
+                    <div class="features">
+                        <div>
+                            ✔ Secure Database
                         </div>
-                    {% endif %}
-                    <div class="form-card">
-                        <h2>
-                            Add Contact
-                        </h2>
-                        <form action="/add" method="POST">
-                            <div class="form-group">
-                                <label for="name">
-                                    Full Name
-                                </label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    name="name"
-                                    placeholder="Enter contact name"
-                                    autocomplete="name"
-                                    required
-                                >
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">
-                                    Phone Number
-                                </label>
-                                <input
-                                    id="phone"
-                                    type="text"
-                                    name="phone"
-                                    placeholder="Enter phone number"
-                                    autocomplete="tel"
-                                    required
-                                >
-                            </div>
-                            <div class="form-buttons">
-                                <button  type="submit" class="btn-primary">
-                                    ADD CONTACT
-                                </button>
-                                <button type="reset" class="btn-secondary">
-                                    CLEAR
-                                </button>
-                            </div>
-                        </form>
+                        <div>
+                            ✔ Fast Search
+                        </div>
+                        <div>
+                            ✔ Responsive Design
+                        </div>
                     </div>
+                    <form class="search" method="GET" action="/">
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Search contacts..."
+                            value="{{ search }}"
+                            autocomplete="off"
+                        >
+                        <button type="submit">
+                            SEARCH
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="contacts-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>
+                        All Contacts
+                    </h2>
+                    <p>
+                        Manage all your saved contacts from one place.
+                    </p>
+                </div>
+                <div class="table-card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Phone Number
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if contacts %}
+                                {% for contact in contacts %}
+                                    <tr>
+                                        <td>
+                                            {{ contact["name"] }}
+                                        </td>
+                                        <td>
+                                            {{ contact["phone"] }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="2" class="empty-table">
+                                        No Contacts Found
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -154,8 +183,7 @@
                 <img src="{{ url_for('static', filename='image/HOME.png') }}" alt="Fun Contact">
                 <p>
                     Fun Contact is a secure contact management system
-                    designed to help you organize your contacts quickly
-                    and easily.
+                    designed to help you organize your contacts easily.
                 </p>
             </div>
             <div class="footer-links">
