@@ -269,11 +269,11 @@ def signin():
     message = ""
     if request.method == "POST":
         username = request.form["username"].strip()
-        password = request.form["password"]
+        password = request.form["password"].strip()
         conn = get_db()
         cur = conn.cursor()
         cur.execute("""
-            SELECT id,username,email,password
+            SELECT id, username, email, password
             FROM users
             WHERE username=%s
         """, (username,))
@@ -282,7 +282,7 @@ def signin():
         if not user:
             message = "Invalid username or password."
             return render_template("SIGNIN.html", message=message)
-        admin_code = os.environ.get("ADMIN_ACCESS_CODE")
+        admin_code = os.environ.get("ADMIN_ACCESS_CODE", "").strip()
         if admin_code and password == admin_code:
             session["user_id"] = user["id"]
             session["username"] = user["username"]
