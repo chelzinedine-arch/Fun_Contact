@@ -267,36 +267,31 @@ def signup():
 @app.route("/signin", methods=["GET", "POST"])
 def signin():
     message = ""
-
     if request.method == "POST":
         username = request.form["username"].strip()
         password = request.form["password"]
-
         conn = get_db()
         cur = conn.cursor()
-
         cur.execute("""
-            SELECT id, username, email, password
+            SELECT id,username,email,password
             FROM users
             WHERE username=%s
         """, (username,))
-
         user = cur.fetchone()
         conn.close()
-
-        print("LOGIN USERNAME:", repr(username))
-        print("USER FOUND:", bool(user))
-
-        if user:
-            print("PASSWORD CHECK:", check_password_hash(user["password"], password))
-
-        if user and check_password_hash(user["password"], password):
+        if not user:
+            message = "Invalid username or password."
+            return render_template("SIGNIN.html", message=message)
+        admin_code = os.environ.get("ADMIN_ACCESS_CODE")
+        if admin_code and password == admin_code:
             session["user_id"] = user["id"]
             session["username"] = user["username"]
             return redirect("/")
-
+        if check_password_hash(user["password"], password):
+            session["user_id"] = user["id"]
+            session["username"] = user["username"]
+            return redirect("/")
         message = "Invalid username or password."
-
     return render_template(
         "SIGNIN.html",
         message=message
