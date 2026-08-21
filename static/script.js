@@ -65,22 +65,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const newPassword = document.querySelector('input[name="new_password"]');
     if (confirmPassword && newPassword) {
         confirmPassword.addEventListener("input", function () {
-            if (
-                confirmPassword.value !== newPassword.value &&
-                confirmPassword.value.length > 0
-            ) {
-                confirmPassword.classList.add("input-error");
-                confirmPassword.classList.remove("input-success");
-            } else if (
-                confirmPassword.value === newPassword.value &&
-                confirmPassword.value.length > 0
-            ) {
-                confirmPassword.classList.remove("input-error");
-                confirmPassword.classList.add("input-success");
-            } else {
-                confirmPassword.classList.remove("input-error");
-                confirmPassword.classList.remove("input-success");
-            }});}
+            if (confirmPassword.value !== newPassword.value && confirmPassword.value.length > 0)
+             {confirmPassword.classList.add("input-error");confirmPassword.classList.remove("input-success");} 
+            else if (confirmPassword.value === newPassword.value && confirmPassword.value.length > 0)
+             { confirmPassword.classList.remove("input-error"); confirmPassword.classList.add("input-success");}
+            else {confirmPassword.classList.remove("input-error");confirmPassword.classList.remove("input-success");}});}
     const resetButtons = document.querySelectorAll('button[type="reset"]');
     resetButtons.forEach(function (button) {
         button.addEventListener("click", function () {

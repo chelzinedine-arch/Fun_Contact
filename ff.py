@@ -37,34 +37,43 @@ def init_db():
     conn.close()
 @app.route("/")
 def home():
-    if "user_id" not in session:
-        return redirect("/signin")
     search = request.args.get("search", "")
-    user_id = session["user_id"]
+
     conn = get_db()
     cur = conn.cursor()
-    if search:
-        cur.execute("""
-            SELECT id, name, phone
-            FROM contacts
-            WHERE user_id = %s
-            AND name ILIKE %s
-            ORDER BY id DESC
-        """, (user_id, "%" + search + "%"))
-    else:
-        cur.execute("""
-            SELECT id, name, phone
-            FROM contacts
-            WHERE user_id = %s
-            ORDER BY id DESC
-        """, (user_id,))
-    contacts = cur.fetchall()
-    cur.close()
+
+    if "user_id" in session:
+        user_id = session["user_id"]
+
+        if search:
+            cur.execute("""
+                SELECT id, name, phone
+                FROM contacts
+                WHERE user_id = ?
+                AND name LIKE ?
+            """, (user_id, "%" + search + "%"))
+        else:
+            cur.execute("""
+                SELECT id, name, phone
+                FROM contacts
+                WHERE user_id = ?
+            """, (user_id,))
+
+        contacts = cur.fetchall()
+        conn.close()
+
+        return render_template(
+            "D1.html",
+            contacts=contacts,
+            search=search
+        )
+
     conn.close()
+
     return render_template(
-        "HOME.html",
-        contacts=contacts,
-        search=search
+        "D1.html",
+        contacts=[],
+        search=""
     )
 @app.route("/add", methods=["GET", "POST"])
 def add():
